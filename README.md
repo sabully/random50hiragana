@@ -3,7 +3,8 @@ shell脚本写的五十音练习,自用
 
 先给random50hiragana.sh添加执行权限:
 `chmod u+x random50hiragana.sh`
-用法:
+
+**用法:**
 - 随机产生12个a行的字符(平假名和片假名)
 
 `./random50hiragana -a`
