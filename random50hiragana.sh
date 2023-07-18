@@ -33,7 +33,7 @@ show_single(){
         for((i=1;i<=$2;i++))
         do
                 alpha=$1
-                length=$(expr length $a)
+                length=$(expr length $alpha)
                 n=$[ $RANDOM % $length ]
                 x=${alpha:n:1}
                 c=$c$x
