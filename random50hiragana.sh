@@ -36,7 +36,7 @@ show_single(){
                 length=$(expr length $alpha)
                 n=$[ $RANDOM % $length ]
                 x=${alpha:n:1}
-                c=$c$x
+                c=$c$x' '
         done
         echo $c
 }
