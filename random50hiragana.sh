@@ -14,8 +14,8 @@ default_num=12
 if [ -z $1 ];then
 	echo "请输入参数"
 	exit
-elif [ -n "$(echo $1 | sed -nr '/^[-akstnhmyrwN]+$/p')" ];then
-	echo '' > /dev/null	
+elif [ -n "$(sed -nr '/^[-akstnhmyrwN]+$/p' <<< $1)" ];then
+	echo '' > /dev/null
 else
 	echo "请输入正确的参数"
 	exit
@@ -35,8 +35,8 @@ show_single(){
                 alpha=$1
                 length=$(expr length $alpha)
                 n=$[ $RANDOM % $length ]
-                x=${alpha:n:1}
-                c=$c$x' '
+		x=${alpha:n:1}
+                c=$c$x'  '
         done
         echo $c
 }
@@ -88,6 +88,83 @@ do
                         fi
                         arg=$(show_single $t $if_num)
                         echo $arg;;
+                -n|n)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $n $if_num)
+                        echo $arg;;
+                -h|h)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $h $if_num)
+                        echo $arg;;
+                -m|m)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $m $if_num)
+                        echo $arg;;
+                -y|y)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $y $if_num)
+                        echo $arg;;
+                -r|r)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $r $if_num)
+                        echo $arg;;
+                -w|w)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $w $if_num)
+                        echo $arg;;
+                -N|N)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $N $if_num)
+                        echo $arg;;
 		*)	
 			string=$1
 			length=${#string}
@@ -122,7 +199,3 @@ do
 			echo $arg;;
 	esac
 done
-
-
-
-
