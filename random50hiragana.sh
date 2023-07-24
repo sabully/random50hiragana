@@ -1,4 +1,5 @@
 #!/bin/bash
+#!/bin/bash
 a=あアいイうウえエおオ
 k=かカきキくクけケこコ
 s=さサしシすスせセそソ
@@ -10,11 +11,12 @@ y=やヤゆユよヨ
 r=らラりリるルれレろロ
 w=わワをヲ
 N=んン
+all=$a$k$s$t$n$h$m$y$r$w$N
 default_num=12
 if [ -z $1 ];then
 	echo "请输入参数"
 	exit
-elif [ -n "$(sed -nr '/^[-akstnhmyrwN]+$/p' <<< $1)" ];then
+elif [ -n "$(sed -nr '/^[-akstnhmyrwN|(all|-all)]+$/p' <<< $1)" ];then
 	echo '' > /dev/null
 else
 	echo "请输入正确的参数"
@@ -164,6 +166,17 @@ do
                                 shift
                         fi
                         arg=$(show_single $N $if_num)
+                        echo $arg;;
+                -all|all)
+                        if_num=$(if_num $2)
+                        if [ $if_num == 'no_num' ];then
+                                if_num=$default_num
+                                shift
+                        else
+                                shift
+                                shift
+                        fi
+                        arg=$(show_single $all $if_num)
                         echo $arg;;
 		*)	
 			string=$1
